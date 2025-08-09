@@ -1,73 +1,123 @@
-# Welcome to your Lovable project
+<img width="3188" height="1202" alt="frame (3)" src="https://github.com/user-attachments/assets/517ad8e9-ad22-457d-9538-a9e62d137cd7" />
 
-## Project info
 
-**URL**: https://lovable.dev/projects/ad111d00-f9ab-4fd9-953f-7dbe534bead3
+# Chronomancer 🎯
 
-## How can I edit this code?
 
-There are several ways of editing your application.
+## Basic Details
+### Team Name: Quasix
 
-**Use Lovable**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/ad111d00-f9ab-4fd9-953f-7dbe534bead3) and start prompting.
+### Team Members
+- Team Lead: Adarsh P - Christ College of Engineering
+- Member 2: Akshay krishna C - Christ College of Engineering
 
-Changes made via Lovable will be committed automatically to this repo.
+### Project Description
+Chronomancer is a satirical calendar application that serves as a beautiful parody of modern productivity culture. It completely ignores user availability, logic, and convenience. Instead, it harnesses the "power" of the cosmos, using real-time astrological data to schedule your events at the most auspicious—or hilariously inopportune—moments. It’s not a productivity tool; it's a productivity performance art piece.
 
-**Use your preferred IDE**
+### The Problem (that doesn't exist)
+Modern productivty tools suffer from an overemphasis on rationality, user convenience and time management efficiency.Chronomancer corrects this by re introducing cosmic unpredictability, ensuring your schedule is fully aligned with - or disastrously opposed to - the movements of celestial bodies.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### The Solution (that nobody asked for)
+How We’re Solving It :
+We replace boring, logical scheduling with cosmically-powered chaos:
+Gather your birth data for “maximum accuracy.”
+Auspicious Scheduling Engine™ picks hilariously inconvenient astrological times.
+Chaos Mode finds the worst possible moment for your event.
+Conflicting events battle in a Cosmic Showdown.
+Astrological Excuses justify everything to your boss or friends.
+Maman Mode™ adds sarcastic uncle commentary.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Result: A sleek, professional calendar that’s beautifully useless and perfectly aligned (or misaligned) with the cosmos.
 
-Follow these steps:
+## Technical Details
+
+### Technologies/Components Used
+
+For Software:
+
+- **Languages used:**
+  - TypeScript
+  - JavaScript (via React/TypeScript compilation)
+
+- **Frameworks used:**
+  - React
+
+- **Libraries used:**
+  - shadcn-ui (UI component library)
+  - Tailwind CSS (utility-first CSS framework)
+  - @radix-ui/react-* (for accessible UI primitives: avatar, label, scroll-area, switch, slot, etc.)
+  - react-hook-form (form management)
+  - lucide-react (icon set)
+  - vaul (drawer/modal components)
+  - embla-carousel-react (carousel functionality)
+  - recharts (data visualization)
+  - class-variance-authority (for managing Tailwind variants)
+  - lovable-tagger (For Lovable integration)
+
+- **Tools used:**
+  - Vite (build tool and dev server)
+  - Lovable (for no-code/low-code editing, deployment, and sharing)
+  - Node.js & npm (for package/dependency management and scripts)
+  - GitHub (for code hosting and management)
+
+
+### Implementation
+
+For Software:
+
+# Installation
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
+# Clone the repository
 git clone <YOUR_GIT_URL>
 
-# Step 2: Navigate to the project directory.
+# Navigate to the project directory
 cd <YOUR_PROJECT_NAME>
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Install dependencies
+npm install
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Run
+
+```sh
+# Start the development server with auto-reloading and instant preview
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Project Documentation
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- The project supports editing and deployment via [Lovable](https://lovable.dev/projects/ad111d00-f9ab-4fd9-953f-7dbe534bead3).
+- You can also make changes locally with your preferred IDE or directly on GitHub/Codespaces.
+- Node.js and npm are required for local development.
 
-**Use GitHub Codespaces**
+# Screenshots (Add at least 3)
+![Screenshot1](Add screenshot 1 here with proper name)
+*Add caption explaining what this shows*
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+![Screenshot2](Add screenshot 2 here with proper name)
+*Add caption explaining what this shows*
 
-## What technologies are used for this project?
+![Screenshot3](Add screenshot 3 here with proper name)
+*Add caption explaining what this shows*
 
-This project is built with:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Project Demo
+# Video
+[Add your demo video link here]
 
-## How can I deploy this project?
+# Additional Demos
+[Add any extra demo materials/links]
 
-Simply open [Lovable](https://lovable.dev/projects/ad111d00-f9ab-4fd9-953f-7dbe534bead3) and click on Share -> Publish.
+## Team Contributions
+- Adarsh P: [Specific contributions]
+- Akshay Krishna C: [Specific contributions]
 
-## Can I connect a custom domain to my Lovable project?
+---
+Made with ❤️ at TinkerHub Useless Projects 
 
-Yes, you can!
+![Static Badge](https://img.shields.io/badge/TinkerHub-24?color=%23000000&link=https%3A%2F%2Fwww.tinkerhub.org%2F)
+![Static Badge](https://img.shields.io/badge/UselessProjects--25-25?link=https%3A%2F%2Fwww.tinkerhub.org%2Fevents%2FQ2Q1TQKX6Q%2FUseless%2520Projects)
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
