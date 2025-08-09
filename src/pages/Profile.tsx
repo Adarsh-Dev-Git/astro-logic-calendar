@@ -2,7 +2,7 @@ import Navbar from "@/components/layout/Navbar";
 import { useUser } from "@/context/UserContext";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { CalendarDays, MapPin, Clock } from "lucide-react";
+import { CalendarDays, MapPin, Clock, User } from "lucide-react";
 import { useEffect } from "react";
 
 const Profile = () => {
@@ -24,6 +24,12 @@ const Profile = () => {
             </div>
           ) : (
             <div className="grid gap-4 text-left">
+              {profile.name && (
+                <div className="rounded-md border p-4">
+                  <div className="flex items-center gap-2 text-sm"><User className="h-4 w-4 text-primary" /> Name</div>
+                  <div className="mt-1 font-medium">{profile.name}</div>
+                </div>
+              )}
               <div className="rounded-md border p-4">
                 <div className="flex items-center gap-2 text-sm"><CalendarDays className="h-4 w-4 text-primary" /> Birth date</div>
                 <div className="mt-1 font-medium">{profile.birthDate}</div>

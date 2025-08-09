@@ -9,6 +9,7 @@ import { useUser } from "@/context/UserContext";
 const Login = () => {
   const { profile, setProfile } = useUser();
   const navigate = useNavigate();
+  const [name, setName] = useState(profile?.name ?? "");
   const [birthDate, setBirthDate] = useState(profile?.birthDate ?? "");
   const [birthTime, setBirthTime] = useState(profile?.birthTime ?? "");
   const [birthPlace, setBirthPlace] = useState(profile?.birthPlace ?? "");
@@ -16,8 +17,8 @@ const Login = () => {
   useEffect(() => { document.title = "Login | Chronomancer"; }, []);
 
   const onSubmit = () => {
-    if (!birthDate || !birthTime || !birthPlace) return;
-    setProfile({ birthDate, birthTime, birthPlace });
+    if (!name || !birthDate || !birthTime || !birthPlace) return;
+    setProfile({ name, birthDate, birthTime, birthPlace });
     navigate("/profile");
   };
 
@@ -30,6 +31,10 @@ const Login = () => {
           <p className="text-sm text-muted-foreground mb-6">We only need your birth details to personalize cosmic guidance.</p>
 
           <div className="grid gap-4">
+            <div className="grid gap-2">
+              <Label htmlFor="name">Name</Label>
+              <Input id="name" placeholder="e.g., Arjun Rao" value={name} onChange={(e) => setName(e.target.value)} />
+            </div>
             <div className="grid gap-2 sm:grid-cols-2">
               <div className="grid gap-2">
                 <Label htmlFor="birthDate">Birth date</Label>

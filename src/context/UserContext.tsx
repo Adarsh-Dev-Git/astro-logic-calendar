@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 export type UserProfile = {
+  name?: string;      // display name
   birthDate: string;   // YYYY-MM-DD
   birthTime: string;   // HH:MM
   birthPlace: string;  // free text

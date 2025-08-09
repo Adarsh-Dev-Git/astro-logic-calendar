@@ -28,8 +28,13 @@ const CalendarPage = () => {
   const [events, setEvents] = useState<ScheduledEvent[]>([]);
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState("");
-  const [dateTime, setDateTime] = useState<string>(new Date().toISOString().slice(0, 16));
-  const [duration, setDuration] = useState<number>(60);
+  const toLocalInputValue = (date: Date) => {
+    const local = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
+    return local.toISOString().slice(0, 16);
+  };
+  const [dateTime, setDateTime] = useState<string>(toLocalInputValue(new Date()));
+  const [durationHours, setDurationHours] = useState<number>(1);
+  const [durationMinutes, setDurationMinutes] = useState<number>(0);
   const [category, setCategory] = useState<EventCategory>("communication");
   const [chaos, setChaos] = useState<boolean>(false);
   const [showdown, setShowdown] = useState<{ a: ScheduledEvent; b: ScheduledEvent; winnerId: string } | null>(null);
@@ -61,10 +66,11 @@ const CalendarPage = () => {
 
   const onSubmit = async () => {
     const requested = new Date(dateTime);
+    const totalMinutes = Math.max(15, durationHours * 60 + durationMinutes);
     const { event: newEvent, conflictWith } = scheduleEngine({
       title,
       requested,
-      durationMinutes: duration,
+      durationMinutes: totalMinutes,
       category,
       chaosMode: chaos,
     }, events);
@@ -77,7 +83,7 @@ const CalendarPage = () => {
 
     if (conflictWith) {
       const { winner, loser } = resolveConflict(newEvent, conflictWith);
-      const { start, end } = nextOkayWindow(winner.end, duration);
+      const { start, end } = nextOkayWindow(winner.end, totalMinutes);
       const movedLoser: ScheduledEvent = { ...loser, start, end, excuse: loser.excuse + " Rescheduled to the next somewhat okay window." };
       setShowdown({ a: newEvent, b: conflictWith, winnerId: winner.id });
       setTimeout(() => setShowdown(null), 2200);
@@ -131,8 +137,17 @@ const CalendarPage = () => {
                       <Input id="datetime" type="datetime-local" value={dateTime} onChange={(e) => setDateTime(e.target.value)} />
                     </div>
                     <div className="grid gap-2">
-                      <Label htmlFor="duration">Duration (minutes)</Label>
-                      <Input id="duration" type="number" min={15} step={15} value={duration} onChange={(e) => setDuration(Number(e.target.value))} />
+                      <Label>Duration</Label>
+                      <div className="grid grid-cols-2 gap-2">
+                        <div className="grid gap-1">
+                          <Label htmlFor="durationHours" className="text-xs text-muted-foreground">Hours</Label>
+                          <Input id="durationHours" type="number" min={0} step={1} value={durationHours} onChange={(e) => setDurationHours(Math.max(0, Number(e.target.value)))} />
+                        </div>
+                        <div className="grid gap-1">
+                          <Label htmlFor="durationMinutes" className="text-xs text-muted-foreground">Minutes</Label>
+                          <Input id="durationMinutes" type="number" min={0} max={59} step={5} value={durationMinutes} onChange={(e) => setDurationMinutes(Math.min(59, Math.max(0, Number(e.target.value))))} />
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div className="grid gap-2 sm:grid-cols-2">
@@ -173,7 +188,29 @@ const CalendarPage = () => {
             headerToolbar={{ left: "prev,next today", center: "title", right: "timeGridDay,timeGridWeek,dayGridMonth" }}
             height="auto"
             nowIndicator
-            selectable
+              selectable
+              dateClick={(info) => {
+                setDateTime(toLocalInputValue(new Date(info.date)));
+                setOpen(true);
+              }}
+              select={(info) => {
+                const start = new Date(info.start);
+                const end = new Date(info.end);
+                const minutes = Math.max(15, Math.round((end.getTime() - start.getTime()) / 60000));
+                setDateTime(toLocalInputValue(start));
+                setDurationHours(Math.floor(minutes / 60));
+                setDurationMinutes(minutes % 60);
+                setOpen(true);
+              }}
+              eventClick={(info) => {
+                const clickedId = String(info.event.id || "");
+                if (!clickedId) return;
+                const ok = window.confirm(`Delete event "${info.event.title}"?`);
+                if (ok) {
+                  setEvents((prev) => prev.filter((e) => e.id !== clickedId));
+                  toast({ title: "Event deleted", description: `${info.event.title}` });
+                }
+              }}
             events={fcEvents}
           />
         </div>

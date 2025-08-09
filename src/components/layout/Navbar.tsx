@@ -14,11 +14,8 @@ const Navbar = () => {
           <span>Chronomancer</span>
         </Link>
         <div className="flex items-center gap-6">
-          <NavLink to="/" className="story-link text-sm">
+          <NavLink to="/" className="story-link text-sm text-primary font-semibold">
             Home
-          </NavLink>
-          <NavLink to="/calendar" className="story-link text-sm">
-            Calendar
           </NavLink>
           <Button asChild variant="hero" size="sm" className="hover-scale">
             <Link to="/calendar">
@@ -38,7 +35,7 @@ const Navbar = () => {
               <DropdownMenuLabel>
                 {profile ? (
                   <div className="text-xs">
-                    <div className="font-medium">Birth details</div>
+                    <div className="font-medium">{profile.name ? profile.name : 'Birth details'}</div>
                     <div className="text-muted-foreground">{profile.birthDate} • {profile.birthTime}</div>
                     <div className="text-muted-foreground truncate">{profile.birthPlace}</div>
                   </div>
