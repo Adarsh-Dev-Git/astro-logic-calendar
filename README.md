@@ -92,15 +92,18 @@ npm run dev
 - You can also make changes locally with your preferred IDE or directly on GitHub/Codespaces.
 - Node.js and npm are required for local development.
 
-# Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
+# Screenshots 
+![Landing Page](src/assets/Screenshot%202025-08-09%20153049.png)
+*This is the landing page of the webapp.*
 
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
+![Calendar](src/assets/Screenshot%202025-08-09%20153128.png)
+*The main calendar page*
 
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
+![User Info](src/assets/Screenshot%202025-08-09%20153153.png)
+*User info page*
+
+![Event Scheduling](src/assets/Screenshot%202025-08-09%20153217.png)
+*Event scheduling*
 
 
 ### Project Demo
@@ -108,7 +111,7 @@ npm run dev
 [Add your demo video link here]
 
 # Additional Demos
-[Add any extra demo materials/links]
+Accurate Astro api can be integrated using https://rapidapi.com/collection/astrology-horoscope
 
 ## Team Contributions
 - Adarsh P: [Specific contributions]
