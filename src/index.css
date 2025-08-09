@@ -39,20 +39,31 @@ All colors MUST be HSL.
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Chronomancer brand tokens */
+    --brand-1: 262 83% 58%; /* violet */
+    --brand-2: 200 90% 56%; /* cyan */
+    --brand-3: 45 95% 55%;  /* gold */
+
+    /* Gradients & shadows */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--brand-1)) 0%, hsl(var(--brand-2)) 50%, hsl(var(--brand-3)) 100%);
+    --shadow-elevated: 0 10px 30px -10px hsl(var(--brand-1) / 0.25);
+    --shadow-glow: 0 20px 40px -12px hsl(var(--brand-2) / 0.35);
+
+    /* Mood ring tokens */
+    --mood-mars: 12 85% 58%;
+    --mood-venus: 330 72% 70%;
+    --mood-mercury: 50 95% 52%;
+    --mood-jupiter: 42 95% 55%;
+    --mood-sun: 48 94% 60%;
+    --mood-moon: 210 16% 60%;
   }
 
   .dark {
@@ -102,4 +113,46 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@layer utilities {
+  /* Hero gradient button using design tokens */
+  .btn-hero {
+    background-image: var(--gradient-hero);
+    color: hsl(var(--primary-foreground));
+    box-shadow: var(--shadow-glow);
+    transition: var(--transition-smooth, all 0.3s cubic-bezier(0.4, 0, 0.2, 1));
+  }
+  .btn-hero:hover { filter: brightness(1.05); }
+  .btn-hero:active { transform: translateY(0.5px); }
+
+  /* Underline animation for links */
+  .story-link { position: relative; display: inline-block; }
+  .story-link::after {
+    content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: 100%;
+    background: hsl(var(--primary)); transform: scaleX(0); transform-origin: bottom right;
+    transition: transform 300ms ease;
+  }
+  .story-link:hover::after { transform: scaleX(1); transform-origin: bottom left; }
+
+  /* Hover scale */
+  .hover-scale { transition: transform 200ms ease; }
+  .hover-scale:hover { transform: translateZ(0) scale(1.03); }
+
+  /* Cosmic surfaces */
+  .bg-cosmic-surface { background: linear-gradient(180deg, hsl(var(--card)) 0%, hsl(var(--muted)/0.4) 100%); box-shadow: var(--shadow-elevated); }
+  .cosmic-aurora {
+    background:
+      radial-gradient(800px 400px at 20% 0%, hsl(var(--brand-1)/0.25), transparent 60%),
+      radial-gradient(600px 300px at 80% 10%, hsl(var(--brand-2)/0.2), transparent 60%),
+      radial-gradient(900px 500px at 50% -10%, hsl(var(--brand-3)/0.15), transparent 60%);
+  }
+
+  /* FullCalendar mood ring styles using CSS variables */
+  .mood-mars { --fc-event-bg-color: hsl(var(--mood-mars)); --fc-event-border-color: hsl(var(--mood-mars)); --fc-event-text-color: hsl(var(--primary-foreground)); }
+  .mood-venus { --fc-event-bg-color: hsl(var(--mood-venus)); --fc-event-border-color: hsl(var(--mood-venus)); --fc-event-text-color: hsl(var(--primary-foreground)); }
+  .mood-mercury { --fc-event-bg-color: hsl(var(--mood-mercury)); --fc-event-border-color: hsl(var(--mood-mercury)); --fc-event-text-color: hsl(var(--foreground)); }
+  .mood-jupiter { --fc-event-bg-color: hsl(var(--mood-jupiter)); --fc-event-border-color: hsl(var(--mood-jupiter)); --fc-event-text-color: hsl(var(--primary-foreground)); }
+  .mood-sun { --fc-event-bg-color: hsl(var(--mood-sun)); --fc-event-border-color: hsl(var(--mood-sun)); --fc-event-text-color: hsl(var(--primary-foreground)); }
+  .mood-moon { --fc-event-bg-color: hsl(var(--mood-moon)); --fc-event-border-color: hsl(var(--mood-moon)); --fc-event-text-color: hsl(var(--foreground)); }
 }
