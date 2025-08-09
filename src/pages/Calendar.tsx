@@ -12,8 +12,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Switch } from "@/components/ui/switch";
 import { toast } from "@/hooks/use-toast";
 import CosmicShowdown from "@/components/CosmicShowdown";
-import { ScheduledEvent, EventCategory, schedule as scheduleEngine, resolveConflict, nextOkayWindow } from "@/lib/astroEngine";
+import { ScheduledEvent, EventCategory, schedule as scheduleEngine, resolveConflict, nextOkayWindow, scheduleWorstForProfile } from "@/lib/astroEngine";
 import { isRetrogradeMock, speakMaman } from "@/lib/maman";
+import { useUser } from "@/context/UserContext";
 
 const categories: { label: string; value: EventCategory }[] = [
   { label: "Communication", value: "communication" },
@@ -23,6 +24,7 @@ const categories: { label: string; value: EventCategory }[] = [
 ];
 
 const CalendarPage = () => {
+  const { profile } = useUser();
   const [events, setEvents] = useState<ScheduledEvent[]>([]);
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState("");
@@ -34,6 +36,14 @@ const CalendarPage = () => {
   const [maman, setMaman] = useState<boolean>(() => localStorage.getItem("mamanMode") === "true");
 
   useEffect(() => { localStorage.setItem("mamanMode", String(maman)); }, [maman]);
+
+  const ymd = (d: Date) => {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    return `${y}-${m}-${day}`;
+  };
+  const eventDates = useMemo(() => new Set(events.map(e => ymd(e.start))), [events]);
 
   const fcEvents = useMemo(() => events.map(e => ({
     id: e.id,
